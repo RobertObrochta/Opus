@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator, SafeAreaView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator, SafeAreaView, TouchableOpacity} from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import firebase from '../database/firebase';
 import styles from './styles';
+import PassStrength from "./passstrength";
+
+
+const MAX_LEN = 25,
+  MIN_LEN = 6,
+  PASS_LABELS = ["Too Short", "Weak", "Normal", "Strong", "Secure"];
 
 export default class Signup extends Component {
   
@@ -15,7 +21,6 @@ export default class Signup extends Component {
       isLoading: false
     }
   }
-
   updateInputVal = (val, prop) => {
     const state = this.state;
     state[prop] = val;
@@ -48,7 +53,6 @@ export default class Signup extends Component {
       .catch(error => this.setState({ errorMessage: error.message }))      
     }
   }
-
   render() {
     if(this.state.isLoading){
       return(
@@ -59,50 +63,57 @@ export default class Signup extends Component {
       )
     }    
     return (
-
       <SafeAreaView style={styles.container}> 
-      <KeyboardAwareScrollView style={{flex: 1, width: '100%'}} keyboardShouldPersistTaps ='always'>
-        <TextInput
-          style={styles.inputStyle}
-          color={'#B7E5D2'}
-          autoCapitalize={'none'}
-          placeholder="Username"
-          placeholderTextColor="#eee"
-          value={this.state.displayName}
-          onChangeText={(val) => this.updateInputVal(val, 'displayName')}
-        />      
-        <TextInput
-          style={styles.inputStyle}
-          color={'#B7E5D2'}
-          autoCapitalize={'none'}
-          placeholder="Email"
-          placeholderTextColor="#eee"
-          value={this.state.email}
-          onChangeText={(val) => this.updateInputVal(val, 'email')}
-        />
-        <TextInput
-          style={styles.inputStyle}
-          color={'#B7E5D2'}
-          autoCapitalize={'none'}
-          placeholder="Password"
-          placeholderTextColor="#eee"
-          value={this.state.password}
-          onChangeText={(val) => this.updateInputVal(val, 'password')}
-          maxLength={15}
-          secureTextEntry={true}
-        />   
-
-        <View>
-          <TouchableOpacity onPress={() => this.registerUser()} style={styles.loginBtn}>
-            <Text style={styles.loginText}>Sign Up</Text>
-          </TouchableOpacity>
-        </View>
-        <Text 
-          style={styles.registeredText}
-          onPress={() => this.props.navigation.navigate('Login')}>
-          Already registered? Click here to log in
-        </Text>  
-        </KeyboardAwareScrollView>                        
+        <KeyboardAwareScrollView style={{flex: 1, width: '100%'}} keyboardShouldPersistTaps ='always'>
+          <Text style={styles.newUser}>New user? Create an account</Text>
+            <TextInput
+              style={styles.inputStyle}
+              color={'#B7E5D2'}
+              autoCapitalize={'none'}
+              placeholder="Username"
+              placeholderTextColor="#eee"
+              value={this.state.displayName}
+              onChangeText={(val) => this.updateInputVal(val, 'displayName')}
+            />      
+            <TextInput
+              style={styles.inputStyle}
+              color={'#B7E5D2'}
+              autoCapitalize={'none'}
+              placeholder="Email"
+              placeholderTextColor="#eee"
+              value={this.state.email}
+              onChangeText={(val) => this.updateInputVal(val, 'email')}
+            />
+            <TextInput
+              style={styles.inputStyle}
+              color={'#B7E5D2'}
+              autoCapitalize={'none'}
+              placeholder="Password"
+              placeholderTextColor="#eee"
+              value={this.state.password}
+              onChangeText={(val) => this.updateInputVal(val, 'password')}
+              maxLength={25}
+              secureTextEntry={true}
+            />
+                <PassStrength
+                  showLabels
+                  password={this.state.password}
+                  maxLength={MAX_LEN}
+                  minLength={MIN_LEN}
+                  labels={PASS_LABELS}
+                  style={styles.passwordStrength}
+                  />
+            <View>
+              <TouchableOpacity onPress={() => this.registerUser()} style={styles.loginBtn}>
+                <Text style={styles.loginText}>Sign Up</Text>
+              </TouchableOpacity>
+            </View>
+            <Text 
+              style={styles.registeredText}
+              onPress={() => this.props.navigation.navigate('Opus')}>
+              Already registered? Click here to log in
+            </Text>  
+          </KeyboardAwareScrollView>                        
       </SafeAreaView>
     );
   }
