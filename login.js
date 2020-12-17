@@ -1,14 +1,12 @@
-// components/login.js
+// replaced the login.js file to make the header say "Opus" instead of "Login"
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator, TouchableOpacity, SafeAreaView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import firebase from '../database/firebase';
 import styles from './styles';
 
-
-
-export default class Login extends Component {
+export default class Opus extends Component {
   
   constructor() {
     super();
@@ -57,10 +55,12 @@ export default class Login extends Component {
           <ActivityIndicator size="large" color="#9E9E9E"/>
         </View>
       )
-    }    
+    }
+        
     return (
-      <View style={styles.container}>  
+      <SafeAreaView style={styles.container}>
       <KeyboardAwareScrollView style={{flex: 1, width: '100%'}} keyboardShouldPersistTaps ='always'>
+      <Text style={styles.existingUser}>Welcome back!</Text>  
         <TextInput
           style={styles.inputStyle}
           color={'#B7E5D2'}
@@ -91,9 +91,15 @@ export default class Login extends Component {
           style={styles.registeredText}
           onPress={() => this.props.navigation.navigate('Signup')}>
           Don't have account? Click here to sign up
-        </Text>                          
+        </Text>   
+        {/* coming soon vvv */}
+        {/* <Text
+          title='Forgot Password?'
+          onPress={() => this.props.navigation.navigate("Forgot Password")}>
+          Forgot password?
+        </Text>                   */}
         </KeyboardAwareScrollView>
-      </View>
+      </SafeAreaView>
     );
   }
 }
