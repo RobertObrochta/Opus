@@ -65,4 +65,20 @@ export default StyleSheet.create({
       justifyContent:"center",
       padding:20,
     },
+    newUser:{
+      color: "#B7E5D2",
+      justifyContent: 'center',
+      alignContent:"center",    
+      fontSize:19,
+      paddingLeft:33,
+      paddingBottom:15
+    },
+    existingUser:{
+      color: "#B7E5D2",
+      justifyContent: 'center',
+      alignContent:"center",    
+      fontSize:19,
+      paddingLeft:100,
+      paddingBottom:15
+    }
   });
