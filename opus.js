@@ -25,8 +25,15 @@ export default class Opus extends Component {
 
   userLogin = () => {
     if(this.state.email === '' && this.state.password === '') {
-      Alert.alert('Enter details to sign in')
-    } else {
+      Alert.alert('Enter your login information')
+    } 
+    else if(this.state.password.length < 6){
+      Alert.alert("Please enter your password")
+    }
+    else if(this.state.email === ""){
+      Alert.alert("Enter an email to log in")
+    }
+    else {
       this.setState({
         isLoading: true,
       })
@@ -43,7 +50,8 @@ export default class Opus extends Component {
         })
         this.props.navigation.navigate('Dashboard')
       })
-      .catch(error => this.setState({ errorMessage: error.message }))
+      .catch(error => this.setState({ errorMessage: error.message }, Alert.alert("Email or password is incorrect")), 
+      this.setState({isLoading: false}))
     }
   }
 
@@ -81,23 +89,17 @@ export default class Opus extends Component {
           maxLength={15}
           secureTextEntry={true}
         />  
+        <Text style={styles.forgotPassword} onPress={()=> this.props.navigation.navigate('Forgot Password')}>Forgot password?</Text>
         <View>
           <TouchableOpacity onPress={() => this.userLogin()} style={styles.loginBtn}>
             <Text style={styles.loginText}>Log In</Text>
           </TouchableOpacity>
         </View> 
-
         <Text 
-          style={styles.registeredText}
+          style={styles.alreadyRegText}
           onPress={() => this.props.navigation.navigate('Signup')}>
-          Don't have account? Click here to sign up
+          Don't have an account? Click here to sign up
         </Text>   
-        {/* coming soon vvv */}
-        {/* <Text
-          title='Forgot Password?'
-          onPress={() => this.props.navigation.navigate("Forgot Password")}>
-          Forgot password?
-        </Text>                   */}
         </KeyboardAwareScrollView>
       </SafeAreaView>
     );
