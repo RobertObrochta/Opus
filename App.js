@@ -8,6 +8,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Opus from './components/opus';
 import Signup from './components/signup';
 import Dashboard from './components/dashboard';
+import Profile from './components/profile';
+import Forgot from './components/forgot';
 
 const Stack = createStackNavigator();
 
@@ -36,25 +38,31 @@ function MyStack() {
         component={Opus} 
         options={
           {title: 'Opus'},
-        {headerLeft: null}}
+        { headerLeft: null }}
       />
       <Stack.Screen 
        name="Dashboard" 
        component={Dashboard} 
        options={
          { title: 'Home' },
-         {headerLeft: null} 
+         { headerLeft: null } 
        }
       />
-      {/* coming soon */}
-      {/* <Stack.Screen 
-       name="Forgot Password" 
-       component={ForgotPassword} 
+      <Stack.Screen 
+       name="Profile" 
+       component={Profile} 
        options={
-         { title: 'Opus' },
-         {headerLeft: null} 
+         { title: 'Profile' },
+         { headerLeft: null } 
        }
-      /> */}
+      />
+      <Stack.Screen 
+       name="Forgot Password" 
+       component={Forgot} 
+       options={
+         { title: 'Forgot Password' }
+       }
+      /> 
     </Stack.Navigator>
   );
 }
