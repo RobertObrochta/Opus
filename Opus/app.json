@@ -1,0 +1,13 @@
+{
+  "name": "PracLog",
+  "displayName": "PracLog",
+  "expo": {
+    "name": "PracLog",
+    "slug": "PracLog",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "description": ""
+  }
+}
