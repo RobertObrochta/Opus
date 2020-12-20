@@ -80,5 +80,52 @@ export default StyleSheet.create({
       fontSize:19,
       paddingLeft:100,
       paddingBottom:15
+    },
+    alreadyRegText:{
+      color:"#CFD3D1",
+      fontSize: 15,
+      alignContent:"center",
+      justifyContent:'center',
+      paddingLeft:6
+    },
+    forgotPassword: {
+      color:"#A15543",
+      fontSize: 15,
+      paddingTop:12,
+      paddingLeft: 18,
+      justifyContent: 'center'
+    },
+    forgot: {
+      color:"#B7E5D2",
+      fontSize: 19,
+      paddingTop:12,
+      paddingLeft: 20,
+      justifyContent: 'center'
+    },
+    forgottenEmail: {
+      width: '98%',
+      marginTop: 50,
+      paddingTop:13,
+      paddingBottom: 15,
+      paddingLeft:15,
+      alignSelf: "center",
+      borderRadius: 50,
+      borderColor: "#B7E5D2",
+      borderBottomWidth: 1.5,
+      borderTopWidth: 1.5,
+      borderLeftWidth:1.5,
+      borderRightWidth:1.5,
+      height:50
+    },
+    forgottenSend:{
+      width:"98%",
+      backgroundColor:"#A15543",
+      borderRadius:50,
+      height:50,
+      alignItems:"center",
+      justifyContent:"center",
+      marginTop: 85,
+      marginBottom:35,
     }
+    
   });
