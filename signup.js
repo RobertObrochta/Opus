@@ -29,8 +29,18 @@ export default class Signup extends Component {
 
   registerUser = () => {
     if(this.state.email === '' && this.state.password === '') {
-      Alert.alert('Sign up in order to proceed!')
-    } else {
+      Alert.alert('Please fill out account information!')
+    } 
+    else if(this.state.displayName === ""){
+      Alert.alert("Please enter a username")
+    }
+    else if(this.state.password.length < 6){
+      Alert.alert("Password should be longer than 6 characters")
+    }
+    else if(this.state.email === ""){
+      Alert.alert("Enter a valid email to sign up")
+    }
+    else {
       this.setState({
         isLoading: true,
       })
@@ -50,7 +60,8 @@ export default class Signup extends Component {
         })
         this.props.navigation.navigate('Dashboard')
       })
-      .catch(error => this.setState({ errorMessage: error.message }))      
+      .catch(error => this.setState({ errorMessage: error.message }, Alert.alert("Email already in use")),
+      this.setState({isLoading: false}))
     }
   }
   render() {
