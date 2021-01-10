@@ -7,7 +7,7 @@ This app can be used for any musician that is seeking advice about being a more 
 # To-Do List
 - [x] Added Firebase compatibility for logging in with email and password, and signing up
 - [x] Added password strength bar to signup.js
-- [ ] Add Forgot Password screen with Firebase email response
+- [x] Add Forgot Password screen with Firebase email response
 - [ ] Create homescreen that features likes and video playback
 - [ ] Create profile screen that allows users to see their own public videos, and their own private videos
 - [ ] Create profile screen that allows users to see their liked videos 
